@@ -4,6 +4,8 @@ namespace App\Application\WalletBalance;
 
 use App\Domain\Wallet;
 use App\Application\WalletDataSource\WalletDataSource;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class GetWalletBalanceService
 {
@@ -19,20 +21,18 @@ class GetWalletBalanceService
     public function __construct(WalletDataSource $walletDataSource){
         $this->walletDataSource = $walletDataSource;
     }
-    public function execute(string $walletId): array
+    public function execute(string $walletId)
     {
         $walletBalance = 0;
         $wallet = $this->walletDataSource->getWallet($walletId);
         $walletCoins = $wallet->getCoins();
 
-        if (empty($walletCoins)){
-            return ['balance_usd' => '0'];
+        foreach ($walletCoins as $quantity => $coin) {
+            $walletBalance = $walletBalance + $coin->getPriceUSD() * $quantity;
         }
 
-        foreach ($walletCoins as $coin) {
-            $walletBalance = $walletBalance + $coin->getPriceUSD();
-        }
+        $response = ['balance_usd' => $walletBalance];
 
-        return $walletBalance;
+        return json_encode($response);
     }
 }

@@ -12,7 +12,7 @@ class WalletDataSource
   public function getWallet(string $walletId): ?Wallet
     {
         if (!Cache::has($walletId)) {
-            return null;
+            return Exception("Wallet not found");
         } else {
             return Cache::get($walletId);
         }

@@ -9,7 +9,9 @@ use PHPUnit\Framework\TestCase;
 use Exception;
 use Mockery;
 
-class CoinStatusServiceTest extends TestCase
+
+class CoinDataSourceTest extends TestCase
+
 {
     private CoinDataSource $coinDataSource;
     private CoinStatusService $getCoinStatusService;

@@ -2,32 +2,35 @@
 
 namespace App\Infrastructure\Controllers;
 
-use App\Application\CoinStatus\CoinStatusService;
+
+use App\Application\CoinDataSource\CoinDataSource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
-use Exception;
+use PHPUnit\Util\Exception;
 
-class CoinStatusController extends BaseController
+class GetCoinController extends BaseController
 {
 
     /**
-     * @var CoinStatusService
+     * @var CoinDataSource
      */
-    private CoinStatusService $coinStatusService;
+    private $coinStatusService;
 
     /**
-     * @param CoinStatusService $coinStatusService
+     * @param $coinStatusService
      */
-    public function __construct(CoinStatusService $coinStatusService)
+    public function __construct($coinStatusService)
+
     {
         $this->coinStatusService = $coinStatusService;
     }
 
-    public function __invoke(string $coinId): JsonResponse
+
+    public function __invoke(string $id_coin): JsonResponse
     {
         try {
-            $coin = $this->coinStatusService->execute($coinId);
+            $coin = $this->coinStatusService->execute($id_coin);
 
             if(is_null($coin))
                 return response()->json(['error' => 'A coin with the specified ID was not found'], Response::HTTP_BAD_REQUEST);
@@ -35,9 +38,10 @@ class CoinStatusController extends BaseController
             return response()->json(['error' => $exception->getMessage()], Response::HTTP_SERVICE_UNAVAILABLE);
         }
 
-
         return response()->json(['coin_id' => $coin->getId(), 'symbol' => $coin->getSymbol(), 'name' => $coin->getName()
             , 'nameid' => $coin->getNameId(), 'rank' => $coin->getRank(), 'price_usd' => $coin->getPriceUSD()], Response::HTTP_OK);
+
+
 
     }
 

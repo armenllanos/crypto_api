@@ -23,7 +23,6 @@ class GetWalletBalanceController
                 return response()->json([
                     "error" => "a wallet with the specified ID was not found"
                 ], Response::HTTP_NOT_FOUND);
-            else ($exception->getMessage() === )
         }
         return [];
     }

@@ -32,7 +32,7 @@ class GetWalletBalanceControllerTest extends TestCase
             ->andThrow(new Exception('Wallet not found'));
 
         $response = $this->get('api/wallet/999/balance');
-
+        
         $response->assertExactJson(['error' => 'a wallet with the specified ID was not found']);
     }
 }

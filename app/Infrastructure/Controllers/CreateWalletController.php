@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Controllers;
 
 use App\Application\WalletCreate\WalletCreateService;
+use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
@@ -26,7 +27,7 @@ class CreateWalletController extends BaseController
         } catch (Exception $exception) {
             return response()->json([
                 'error' => $exception->getMessage()
-            ], Response::HTTP_BAD_REQUEST);
+            ], Response::HTTP_SERVICE_UNAVAILABLE);
         }
 
         return response()->json([

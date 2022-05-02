@@ -4,6 +4,7 @@ namespace Tests\app\Infrastructure\Controller;
 
 use App\Application\WalletDataSource\WalletDataSource;
 use Exception;
+use Illuminate\Http\Response;
 use Mockery;
 use Tests\TestCase;
 
@@ -36,7 +37,8 @@ class GetWalletBalanceControllerTest extends TestCase
 
         $response = $this->get('api/wallet/999/balance');
 
-        $response->assertExactJson(['error' => 'a wallet with the specified ID was not found']);
+        $response->assertStatus(Response::HTTP_NOT_FOUND)
+            ->assertExactJson(['error' => 'a wallet with the specified ID was not found']);
     }
 
     /**
@@ -52,6 +54,7 @@ class GetWalletBalanceControllerTest extends TestCase
 
         $response = $this->get('api/wallet/999/balance');
 
-        $response->assertExactJson(['error' => 'service is unavailable']);
+        $response->assertStatus(Response::HTTP_SERVICE_UNAVAILABLE)
+            ->assertExactJson(['error' => 'service is unavailable']);
     }
 }

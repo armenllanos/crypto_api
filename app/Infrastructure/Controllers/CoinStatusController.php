@@ -19,9 +19,9 @@ class CoinStatusController extends BaseController
     private CoinStatusService $coinStatusService;
 
     /**
-     * @param $coinStatusService
+     * @param CoinStatusService $coinStatusService
      */
-    public function __construct($coinStatusService)
+    public function __construct(CoinStatusService $coinStatusService)
     {
         $this->coinStatusService = $coinStatusService;
     }

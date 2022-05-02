@@ -27,7 +27,7 @@ class GetCoinController extends BaseController
     public function __invoke(string $id_coin): JsonResponse
     {
         try {
-            $coin = $this->coinStatusService->getCoinStatus($id_coin);
+            $coin = $this->coinStatusService->execute($id_coin);
 
             if(is_null($coin))
                 return response()->json(['error' => 'A coin with the specified ID was not found'], Response::HTTP_BAD_REQUEST);

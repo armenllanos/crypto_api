@@ -1,6 +1,7 @@
 <?php
 
 namespace Tests\app\Infrastructure\Controller;
+
 use App\Application\WalletDataSource\WalletDataSource;
 use Exception;
 use Mockery;
@@ -18,12 +19,13 @@ class GetWalletBalanceControllerTest extends TestCase
         parent::setUp();
 
         $this->walletDataSource = Mockery::mock(WalletDataSource::class);
+
         $this->app->bind(WalletDataSource::class, fn () => $this->walletDataSource);
     }
     /**
      * @test
      */
-    public function walletWithGivenIdDoesNotExist()
+    public function walletWithGivenIdNotFound()
     {
         $this->walletDataSource
             ->expects("getWallet")

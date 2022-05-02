@@ -1,20 +1,19 @@
 <?php
-namespace Tests\app\Application\WalletCreate;
 
-use App\Application\WalletCreate\WalletCreateService;
+namespace Tests\app\Infrastructure\Controller;
+
+
+use App\Application\WalletDataSource\WalletDataSource;
 use App\Application\WalletId\WalletIdGenerator;
 use App\Domain\Wallet;
 use Illuminate\Support\Facades\Cache;
 use Mockery;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
-
-class WalletCreateServiceTest
-    extends TestCase
+class CreateWalletControllerTest extends TestCase
 {
-    private WalletCreateService $walletCreateService;
+    private WalletDataSource $walletDataSource;
     private WalletIdGenerator $walletIdGenerator;
-
     /**
      * @setUp
      */
@@ -22,25 +21,20 @@ class WalletCreateServiceTest
     {
         parent::setUp();
         $this->walletIdGenerator = Mockery::mock(WalletIdGenerator::class);
-        $this->walletCreateService = new  WalletCreateService($this->walletIdGenerator);
+        $this->app->bind(WalletIdGenerator::class, fn () => $this->walletIdGenerator);
+        $this->app->bind(WalletDataSource::class, fn () => $this->walletDataSource);
     }
-
     /**
      * @test
      */
-    public function walletCreateTest()
+    public function controllerCreateWalletTest()
     {
-
         $wallet = new Wallet();
         $wallet->setWalletId('1234');
         $this->walletIdGenerator
             ->expects('generateId')
             ->andReturn('1234');
-        Cache::shouldReceive('put')
-            ->withAnyArgs();
-        $newWallet = $this->walletCreateService->execute();
-        $this->assertEquals($newWallet->getWalletId(),$wallet->getWalletId());
+        $response = $this->post('/api/wallet/open');
+        $response->assertExactJson(['wallet_id' => '1234']);
     }
-
-
 }

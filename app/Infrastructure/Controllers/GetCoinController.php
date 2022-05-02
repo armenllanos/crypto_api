@@ -8,7 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
 use PHPUnit\Util\Exception;
 
-class CoinStatusController extends BaseController
+class GetCoinController extends BaseController
 {
 
     /**
@@ -27,7 +27,7 @@ class CoinStatusController extends BaseController
     public function __invoke(string $id_coin): JsonResponse
     {
         try {
-            $coin = $this->coinStatusService->execute($id_coin);
+            $coin = $this->coinStatusService->getCoinStatus($id_coin);
 
             if(is_null($coin))
                 return response()->json(['error' => 'A coin with the specified ID was not found'], Response::HTTP_BAD_REQUEST);

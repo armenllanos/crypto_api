@@ -37,4 +37,20 @@ class GetWalletBalanceControllerTest extends TestCase
 
         $response->assertExactJson(['error' => 'a wallet with the specified ID was not found']);
     }
+
+    /**
+     * @test
+     */
+    public function genericServiceUnavailableErrorWhenGettingWalletBalance()
+    {
+        $this->walletDataSource
+            ->expects("getWallet")
+            ->with('999')
+            ->once()
+            ->andThrow(new Exception('Service unavailable'));
+
+        $response = $this->get('api/wallet/999/balance');
+
+        $response->assertExactJson(['error' => 'service is unavailable']);
+    }
 }

@@ -18,13 +18,18 @@ class GetWalletBalanceController
     public function __invoke(string $walletId): JsonResponse
     {
         try {
-            $walletBalance = $this->getWalletBalanceService->execute($walletId);
-        }catch (Exception $exception) {
+            $walletBalance=$this->getWalletBalanceService->execute($walletId);
+        } catch (Exception $exception) {
             if ($exception->getMessage() === 'Wallet not found')
                 return response()->json([
-                    "error" => "a wallet with the specified ID was not found"
+                    "error"=>"a wallet with the specified ID was not found"
                 ], Response::HTTP_NOT_FOUND);
-            else ($exception->getMessage() === )
+
+            else if ($exception->getMessage() === 'Service unavailable')
+                return response()->json([
+                    "error"=>"service is unavailable"
+                ], Response::HTTP_SERVICE_UNAVAILABLE);
         }
         return [];
+    }
 }

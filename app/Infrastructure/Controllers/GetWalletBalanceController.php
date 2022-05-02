@@ -30,7 +30,7 @@ class GetWalletBalanceController
                 ], Response::HTTP_SERVICE_UNAVAILABLE);
         }
         return response()->json([
-            "balance_usd" => '0'
+            "balance_usd" => $walletBalance
         ],Response::HTTP_OK);
     }
 }

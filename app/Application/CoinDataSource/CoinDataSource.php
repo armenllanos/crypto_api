@@ -7,13 +7,13 @@ use App\Domain\Coin;
 class CoinDataSource
 {
 
-
     public function __construct()
     {
     }
 
-    public function getCoinStatus(string $idCoin) : Coin
-    {
+
+    public function getCoinStatus(string $idCoin) : Coin{
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://api.coinlore.net/api/ticker/?id=" . $idCoin,

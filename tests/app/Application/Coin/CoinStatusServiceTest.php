@@ -12,7 +12,7 @@ use Mockery;
 class CoinStatusServiceTest extends TestCase
 {
     private CoinDataSource $coinDataSource;
-    private CoinStatusService $getCoinStatusService;
+    private CoinStatusService $coinStatusService;
 
     /**
      * @setUp
@@ -23,7 +23,8 @@ class CoinStatusServiceTest extends TestCase
 
         $this->coinDataSource = Mockery::mock(CoinDataSource::class);
 
-        $this->getCoinStatusService = new CoinStatusService($this->coinDataSource);
+        $this->coinStatusService = new CoinStatusService($this->coinDataSource);
+
     }
 
 
@@ -42,7 +43,7 @@ class CoinStatusServiceTest extends TestCase
             ->once()
             ->andReturn($coin);
 
-        $response = $this->getCoinStatusService->getCoinStatus($coinId);
+        $response = $this->coinStatusService->execute($coinId);
 
         $this->assertEquals("BTC",$response->getSymbol());
 

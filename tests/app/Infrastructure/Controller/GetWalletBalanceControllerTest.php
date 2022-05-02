@@ -1,6 +1,7 @@
 <?php
 
 namespace Tests\app\Infrastructure\Controller;
+
 use App\Application\WalletDataSource\WalletDataSource;
 use Exception;
 use Mockery;
@@ -8,6 +9,7 @@ use Tests\TestCase;
 
 class GetWalletBalanceControllerTest extends TestCase
 {
+
     private WalletDataSource $walletDataSource;
 
     /**

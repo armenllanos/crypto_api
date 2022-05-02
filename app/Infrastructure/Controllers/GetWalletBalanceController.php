@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Controllers;
 
+
 use App\Application\WalletBalance\GetWalletBalanceService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -26,5 +27,4 @@ class GetWalletBalanceController
             else ($exception->getMessage() === )
         }
         return [];
-    }
 }

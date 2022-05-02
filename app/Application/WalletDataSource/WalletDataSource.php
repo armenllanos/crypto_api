@@ -20,7 +20,7 @@ class WalletDataSource
 
     public function saveWallet(Wallet $wallet)
     {
-        Cache::forever($wallet->getWalletId(), $wallet);
+        Cache::put($wallet->getWalletId(), $wallet);
     }
 
     public function deleteWallet(string $walletId)

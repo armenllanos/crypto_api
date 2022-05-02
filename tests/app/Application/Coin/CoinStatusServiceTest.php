@@ -48,4 +48,23 @@ class CoinStatusServiceTest extends TestCase
         $this->assertEquals("BTC",$response->getSymbol());
 
     }
+
+    /**
+     * @test
+     */
+    public function getNonExistingCoin()
+    {
+
+        $coinId = '54545454';
+        $this->coinDataSource
+            ->expects('getCoinStatus')
+            ->with($coinId)
+            ->once()
+            ->andReturn(null);
+
+        $response = $this->coinStatusService->execute($coinId);
+
+        $this->assertEquals(null,$response);
+
+    }
 }

@@ -20,7 +20,7 @@ class CoinStatusService
     }
 
 
-    public function execute(string $idCoin) : Coin
+    public function execute(string $idCoin) : ?Coin
     {
        return $this->coinDataSource->getCoinStatus($idCoin);
     }

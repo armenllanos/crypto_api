@@ -54,3 +54,5 @@ class CreateWalletControllerTest extends TestCase
         $response->assertExactJson(['error' => 'Service unavailable']);
     }
 
+}
+

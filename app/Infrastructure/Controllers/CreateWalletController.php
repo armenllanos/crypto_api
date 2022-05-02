@@ -27,9 +27,7 @@ class CreateWalletController extends BaseController
         } catch (Exception $exception) {
             return response()->json([
                 'error' => $exception->getMessage()
-
             ], Response::HTTP_SERVICE_UNAVAILABLE);
-
         }
 
         return response()->json([

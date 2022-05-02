@@ -30,6 +30,8 @@ class GetWalletBalanceController
                     "error"=>"service is unavailable"
                 ], Response::HTTP_SERVICE_UNAVAILABLE);
         }
-        return [];
+        return response()->json([
+            "balance_usd" => '0'
+        ],Response::HTTP_OK);
     }
 }

@@ -31,8 +31,6 @@ class GetWalletBalanceService
             $walletBalance = $walletBalance + $coin->getPriceUSD() * $quantity;
         }
 
-        $response = ['balance_usd' => $walletBalance];
-
-        return json_encode($response);
+        return $walletBalance;
     }
 }

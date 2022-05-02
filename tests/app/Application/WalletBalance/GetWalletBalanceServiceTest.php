@@ -46,7 +46,7 @@ class GetWalletBalanceServiceTest extends TestCase
     /**
      * @test
      */
-    public function balanceOfSpecificWalletIsEmpty()
+    public function balanceOfSpecificWalletIsZero()
     {
         $walletId = '0';
         $wallet = new Wallet();
@@ -60,11 +60,10 @@ class GetWalletBalanceServiceTest extends TestCase
             ->andReturn($wallet);
 
         $expectedWalletBalance = 0;
-        $expectedResponse = json_encode(['balance_usd' => $expectedWalletBalance]);
 
         $response = $this->getWalletBalanceService->execute($walletId);
 
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedWalletBalance, $response);
     }
 
     /**
@@ -76,9 +75,9 @@ class GetWalletBalanceServiceTest extends TestCase
         $walletId = '1';
         $wallet->setWalletId($walletId);
 
-        $coinBTC =  new Coin('90', 'BTC', 'Bitcoin', 'bitcoin', '30', '1');
+        $genericCoin =  new Coin('90', 'BTC', 'Bitcoin', 'bitcoin', '30', '1');
         $amount = 2;
-        $wallet->setCoins([$amount => $coinBTC]);
+        $wallet->setCoins([$amount => $genericCoin]);
 
         $this->walletDataSource
             ->expects("getWallet")
@@ -86,11 +85,10 @@ class GetWalletBalanceServiceTest extends TestCase
             ->once()
             ->andReturn($wallet);
 
-        $expectedWalletBalance = $amount * $coinBTC->getPriceUSD();
-        $expectedResponse = json_encode(['balance_usd' => $expectedWalletBalance]);
+        $expectedWalletBalance = $amount * $genericCoin->getPriceUSD();
 
         $response = $this->getWalletBalanceService->execute($walletId);
 
-        $this->assertEquals($expectedResponse, $response);
+        $this->assertEquals($expectedWalletBalance, $response);
     }
 }

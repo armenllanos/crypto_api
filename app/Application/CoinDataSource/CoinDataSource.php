@@ -7,6 +7,7 @@ use App\Domain\Coin;
 class CoinDataSource
 {
 
+    public function getCoinStatus(string $idCoin) : Coin;
 
     public function __construct()
     {
@@ -33,5 +34,4 @@ class CoinDataSource
         return new Coin($currency_data[0]['id'], $currency_data[0]['symbol'], $currency_data[0]['name'], $currency_data[0]['nameid'],
             $currency_data[0]['price_usd'], $currency_data[0]['rank']);
     }
-
 }

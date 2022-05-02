@@ -24,6 +24,7 @@ class CoinStatusService implements CoinDataSource
 
     public function execute(string $idCoin) : Coin
     {
+
         return $this->coinDataSource->getCoinStatus($idCoin);
     }
 
@@ -42,6 +43,5 @@ class CoinStatusService implements CoinDataSource
         $currency_data = json_decode($response, true);
         return new Coin($currency_data[0]['id'], $currency_data[0]['symbol'], $currency_data[0]['name'], $currency_data[0]['nameid'],
             $currency_data[0]['price_usd'], $currency_data[0]['rank']);
-
     }
 }

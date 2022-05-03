@@ -35,7 +35,7 @@ class GetCoinController extends BaseController
             if(is_null($coin))
                 return response()->json(['error' => 'A coin with the specified ID was not found'], Response::HTTP_BAD_REQUEST);
         } catch (Exception $exception) {
-            return response()->json(['error' => $exception->getMessage()], Response::HTTP_SERVICE_UNAVAILABLE);
+            return response()->json(['error' => "Service unavailable"], Response::HTTP_SERVICE_UNAVAILABLE);
         }
 
         return response()->json(['coin_id' => $coin->getId(), 'symbol' => $coin->getSymbol(), 'name' => $coin->getName()

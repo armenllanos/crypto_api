@@ -27,8 +27,8 @@ class GetWalletBalanceService
         $wallet = $this->walletDataSource->getWallet($walletId);
         $walletCoins = $wallet->getCoins();
 
-        foreach ($walletCoins as $quantity => $coin) {
-            $walletBalance = $walletBalance + $coin->getPriceUSD() * $quantity;
+        foreach ($walletCoins as $coin) {
+            $walletBalance = $walletBalance + $coin['coinInformation']->getPriceUSD() * $coin['amount'];
         }
 
         return $walletBalance;

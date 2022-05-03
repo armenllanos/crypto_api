@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ master, 6-as-client-i-want-total-balance-of-my-crypto ,  7-As-Client-I-Want-To-Get-Coins-Status ]
+    branches: [ master, 6-as-client-i-want-total-balance-of-my-crypto ,  7-As-Client-I-Want-To-Get-Coins-Status ,  4-As-Client-I-want-to-open-a-new-wallet]
   pull_request:
-    branches: [ master ,  7-As-Client-I-Want-To-Get-Coins-Status ]
+    branches: [ master , 6-as-client-i-want-total-balance-of-my-crypto ,  7-As-Client-I-Want-To-Get-Coins-Status ,  4-As-Client-I-want-to-open-a-new-wallet]
 
 jobs:
   laravel-tests:

@@ -76,8 +76,12 @@ class GetWalletBalanceServiceTest extends TestCase
         $wallet->setWalletId($walletId);
 
         $genericCoin =  new Coin('90', 'BTC', 'Bitcoin', 'bitcoin', '30', '1');
+        $genericCoin2 =  new Coin('30', 'ETH', 'Ethereum', 'ethereum', '30', '2');
         $amount = 2;
-        $wallet->setCoins([$amount => $genericCoin]);
+        $coinArray = array($genericCoin->getSymbol() => array('coinInformation'=> $genericCoin, 'amount' => $amount),
+            $genericCoin2->getSymbol() => array('coinInformation'=> $genericCoin2, 'amount' => $amount));
+
+        $wallet->setCoins($coinArray);
 
         $this->walletDataSource
             ->expects("getWallet")
@@ -85,7 +89,7 @@ class GetWalletBalanceServiceTest extends TestCase
             ->once()
             ->andReturn($wallet);
 
-        $expectedWalletBalance = $amount * $genericCoin->getPriceUSD();
+        $expectedWalletBalance = $amount * $genericCoin->getPriceUSD() + $genericCoin2->getPriceUSD() * $amount;
 
         $response = $this->getWalletBalanceService->execute($walletId);
 

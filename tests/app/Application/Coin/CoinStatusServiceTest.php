@@ -54,7 +54,6 @@ class CoinStatusServiceTest extends TestCase
      */
     public function getNonExistingCoin()
     {
-
         $coinId = '54545454';
         $this->coinDataSource
             ->expects('getCoinStatus')
@@ -63,8 +62,6 @@ class CoinStatusServiceTest extends TestCase
             ->andReturn(null);
 
         $response = $this->coinStatusService->execute($coinId);
-
         $this->assertEquals(null,$response);
-
     }
 }

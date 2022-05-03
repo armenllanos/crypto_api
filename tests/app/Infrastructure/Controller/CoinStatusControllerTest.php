@@ -4,7 +4,10 @@ namespace Tests\app\Infrastructure\Controller;
 
 use App\Application\CoinDataSource\CoinDataSource;
 use App\Infrastructure\Controllers\GetCoinController;
+use Illuminate\Http\Response;
 use Tests\TestCase;
+use Mockery;
+use Exception;
 
 
 class CoinStatusControllerTest extends TestCase
@@ -39,6 +42,23 @@ class CoinStatusControllerTest extends TestCase
     {
 
         $response = $this->get('/api/coin/status/654654');
-        $response->assertExactJson(["error"=>"A coin with the specified ID was not found"]);
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)->assertExactJson(["error"=>"A coin with the specified ID was not found"]);
     }
+
+    /**
+     * @test
+     */
+    public function serviceUnavailableTest()
+    {
+        $this->coinDataSource = Mockery::mock(CoinDataSource::class);
+        $this->coinDataSource
+            ->expects('getCoinStatus')
+            ->withAnyArgs()
+            ->once()
+            ->andThrow(New Exception("Service unavailable",Response::HTTP_SERVICE_UNAVAILABLE));
+
+        $response = $this->get('/api/coin/status/654654');
+        $response->assertStatus(Response::HTTP_SERVICE_UNAVAILABLE)->assertExactJson(["error"=>"Service unavailable"]);
+   }
+
 }

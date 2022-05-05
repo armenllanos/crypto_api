@@ -53,7 +53,7 @@ class BuyCryptoCoinControllerTest extends TestCase
     /**
      * @test
      */
-    public function requestLacksAParameter()
+    public function errorWhenRequestLacksAParameter()
     {
         $coinPurchaseData = array(
             "coin_id" => "999",

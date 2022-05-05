@@ -45,13 +45,15 @@ class BuyCryptoCoinController extends BaseController
                 return response()->json([
                     'error' => 'service unavailable'
                 ], Response::HTTP_SERVICE_UNAVAILABLE);
-                else if ($exception->getMessage() === 'The given data was invalid.') {
-
-                    return response()->json([
-                        'error' => $this->errors
-                    ], Response::HTTP_BAD_REQUEST);
-                }
-            }
+            else if ($exception->getMessage() === 'The given data was invalid.')
+                return response()->json([
+                    'error' => $this->errors
+                ], Response::HTTP_BAD_REQUEST);
+            else if ($exception->getMessage() === 'Coin Not Found')
+                return response()->json([
+                    'error' => 'a coin with the specified ID was not found.'
+                ], Response::HTTP_NOT_FOUND);
+        }
         return response()->json([
         ],Response::HTTP_OK);
     }

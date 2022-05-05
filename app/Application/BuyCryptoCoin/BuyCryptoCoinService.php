@@ -27,8 +27,15 @@ class BuyCryptoCoinService
     public function execute(array $requestInformation)
     {
         $wallet = $this->walletDataSource->getWallet($requestInformation['wallet_id']);
-        if (isset($wallet))
-            $coin = $this->coinDataSource->getCoin($requestInformation['coin_id']);
-        return '';
+
+        $coin = $this->coinDataSource->getCoin($requestInformation['coin_id']);
+
+        $moneySpent = $requestInformation['amount_usd'];
+
+        $coinAmount = $moneySpent / $coin->getPriceUSD();
+
+        $wallet->addCoin($coin, $coinAmount);
+
+        return $wallet->getCoins();
     }
 }

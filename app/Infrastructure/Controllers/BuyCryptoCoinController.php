@@ -55,6 +55,7 @@ class BuyCryptoCoinController extends BaseController
                 ], Response::HTTP_NOT_FOUND);
         }
         return response()->json([
+            'description' => 'succesful operation'
         ],Response::HTTP_OK);
     }
 }

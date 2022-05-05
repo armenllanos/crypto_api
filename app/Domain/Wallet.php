@@ -5,8 +5,10 @@ namespace App\Domain;
 class Wallet
 {
     private String $wallet_id;
-    private array $coins;
-
+    private array $coins = [];
+    public function __construct(string $wallet_id){
+        $this->wallet_id = $wallet_id;
+    }
     /**
      * @return String
      */
@@ -39,5 +41,14 @@ class Wallet
         $this->coins=$coins;
     }
 
+    public function addCoin(Coin $coin, string $amount){
+        $key = $coin->getSymbol();
+        if (array_key_exists($key, $this->coins)){
+            $this->coins[$key]['amount'] += $amount;
+        }
+        else {
+            $this->coins[$key] = array('coinInformation' => $coin, 'amount' => $amount);
+        }
+    }
 
 }

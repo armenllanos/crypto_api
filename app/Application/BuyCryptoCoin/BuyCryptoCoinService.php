@@ -29,7 +29,6 @@ class BuyCryptoCoinService
         $wallet = $this->walletDataSource->getWallet($requestInformation['wallet_id']);
         if (isset($wallet))
             $coin = $this->coinDataSource->getCoin($requestInformation['coin_id']);
-
         return '';
     }
 }

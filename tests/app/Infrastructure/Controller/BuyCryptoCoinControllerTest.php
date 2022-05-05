@@ -44,10 +44,26 @@ class BuyCryptoCoinControllerTest extends TestCase
             ->once()
             ->andThrow(new Exception('Service Unavailable'));
 
-        $response = $this->post('api/coin/buy', $coinPurchaseData, []);
+        $response = $this->post('api/coin/buy', $coinPurchaseData);
 
         $response->assertStatus(Response::HTTP_SERVICE_UNAVAILABLE)
             ->assertExactJson(['error' => 'service unavailable']);
+    }
+
+    /**
+     * @test
+     */
+    public function requestLacksAParameter()
+    {
+        $coinPurchaseData = array(
+            "coin_id" => "999",
+            "wallet_id" => "999",
+        );
+
+        $response = $this->post('api/coin/buy', $coinPurchaseData);
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)
+            ->assertExactJson(['error' => 'amount_usd mandatory']);
     }
 }
 

@@ -8,10 +8,23 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Validator;
 
 class BuyCryptoCoinController extends BaseController
 {
     private BuyCryptoCoinService $buyCryptoCoinService;
+    private $rules = [
+        'wallet_id' => 'required',
+        'coin_id' => 'required',
+        "amount_usd" => 'required'
+    ];
+    private $messages = [
+        'wallet_id.required' => 'wallet_id mandatory',
+        'coin_id.required' => 'coin_id mandatory',
+        'amount_usd.required' => 'amount_usd mandatory',
+    ];
+    private $errors;
+
     public function __construct(BuyCryptoCoinService $buyCryptoCoinService)
     {
         $this->buyCryptoCoinService = $buyCryptoCoinService;
@@ -19,21 +32,27 @@ class BuyCryptoCoinController extends BaseController
     public function __invoke(Request $request, BuyCryptoCoinService $buyCryptoCoinService): JsonResponse
     {
         try{
-            $data = $request->validate([
-                'wallet_id' => 'required',
-                'coin_id' => 'required',
-                'amount_usd' => 'required'
-            ]);
-            $response = $this->buyCryptoCoinService->execute($data);
+            $validator = Validator::make($request->all(), $this->rules, $this->messages);
+            if ($validator->fails()) {
+                $this->errors = $validator->errors()->first();
+                $validator->validate();
+            }
+            $validatedData = $validator->validate();
+
+            $response = $this->buyCryptoCoinService->execute($validatedData);
         }catch(Exception $exception){
-            print_r($exception->getMessage());
             if ($exception->getMessage() === 'Service Unavailable')
                 return response()->json([
                     'error' => 'service unavailable'
                 ], Response::HTTP_SERVICE_UNAVAILABLE);
-        }
+                else if ($exception->getMessage() === 'The given data was invalid.') {
+
+                    return response()->json([
+                        'error' => $this->errors
+                    ], Response::HTTP_BAD_REQUEST);
+                }
+            }
         return response()->json([
-            "balance_usd" => $walletBalance
         ],Response::HTTP_OK);
     }
 }

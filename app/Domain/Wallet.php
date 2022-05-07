@@ -43,6 +43,10 @@ class Wallet
         if (array_key_exists($key, $this->coins)){
             $this->coins[$key]->getAmount();
             $this->coins[$key]->setAmount($this->coins[$key]->getAmount()-$amount);
+            /*
+             * if ($this->coins[$key]->getAmount() == 0){
+             *  insertar error
+             * }*/
         }
     }
 

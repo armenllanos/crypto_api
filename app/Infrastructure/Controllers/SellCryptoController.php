@@ -48,6 +48,10 @@ class SellCryptoController extends BaseController
                 return response()->json([
                     'error' => $this->errors
                 ], Response::HTTP_BAD_REQUEST);
+            else if ($exception->getMessage() === 'Coin Not Found')
+                return response()->json([
+                    'error' => 'a coin with the specified ID was not found.'
+                ], Response::HTTP_NOT_FOUND);
         }
         return response()->json([
             'description' => 'succesful operation'

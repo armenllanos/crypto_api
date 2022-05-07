@@ -4,6 +4,7 @@ namespace Tests\app\Infrastructure\Controller;
 
 use App\Application\CoinDataSource\CoinDataSource;
 use App\Application\WalletDataSource\WalletDataSource;
+use App\Domain\Wallet;
 use Exception;
 use Mockery;
 use Symfony\Component\HttpFoundation\Response;
@@ -58,7 +59,32 @@ class SellCryptoControllerTest extends TestCase
         $response->assertStatus(Response::HTTP_BAD_REQUEST)
             ->assertExactJson(['error' => 'amount_usd mandatory']);
     }
+    /**
+     * @test
+     */
+    public function coinToSellDoesNotExistTest()
+    {
+        $wallet = new Wallet();
+        $coinPurchaseData = array(
+            "coin_id" => "999",
+            "wallet_id" => "999",
+            "amount_usd" => "0"
+        );
+        $this->walletDataSource
+            ->expects("getWallet")
+            ->andReturn($wallet);
 
+        $this->coinDataSource
+            ->expects("getCoin")
+            ->with($coinPurchaseData['coin_id'])
+            ->once()
+            ->andThrow(new Exception('Coin Not Found'));
+
+        $response = $this->post('api/coin/buy', $coinPurchaseData);
+
+        $response->assertStatus(Response::HTTP_NOT_FOUND)
+            ->assertExactJson(['error' => 'a coin with the specified ID was not found.']);
+    }
 
 
 

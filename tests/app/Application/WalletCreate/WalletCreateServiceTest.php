@@ -2,7 +2,6 @@
 namespace Tests\app\Application\WalletCreate;
 
 use App\Application\WalletCreate\WalletCreateService;
-
 use App\Application\WalletId\IdGenerator;
 use App\Application\WalletId\WalletIdGenerator;
 use App\Domain\Wallet;

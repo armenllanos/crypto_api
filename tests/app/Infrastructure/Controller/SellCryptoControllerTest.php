@@ -43,6 +43,22 @@ class SellCryptoControllerTest extends TestCase
         $response = $this->post('api/coin/buy', $coinPurchaseData);
         $response->assertExactJson(['error' => 'service unavailable']);
     }
+    /**
+     * @test
+     */
+    public function errorMissingParameterTest()
+    {
+        $coinPurchaseData = array(
+            "coin_id" => "999",
+            "wallet_id" => "999",
+        );
+
+        $response = $this->post('api/coin/buy', $coinPurchaseData);
+
+        $response->assertStatus(Response::HTTP_BAD_REQUEST)
+            ->assertExactJson(['error' => 'amount_usd mandatory']);
+    }
+
 
 
 

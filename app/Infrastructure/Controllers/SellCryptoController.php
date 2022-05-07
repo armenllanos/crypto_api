@@ -5,7 +5,6 @@ namespace App\Infrastructure\Controllers;
 use App\Application\SellCrypto\SellCryptoService;
 use Barryvdh\Debugbar\Controllers\BaseController;
 use Exception;
-
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
@@ -39,14 +38,16 @@ class SellCryptoController extends BaseController
                 $validator->validate();
             }
             $validatedData = $validator->validate();
-
             $response = $this->sellCryptoCoinService->execute($validatedData['wallet_id'],$validatedData['coin_id'],$validatedData['amount_usd']);
         }catch(Exception $exception){
             if ($exception->getMessage() === 'Service Unavailable'){
                 return response()->json([
                     'error' => 'service unavailable'
                 ], Response::HTTP_SERVICE_UNAVAILABLE);
-            }
+            } else if ($exception->getMessage() === 'The given data was invalid.')
+                return response()->json([
+                    'error' => $this->errors
+                ], Response::HTTP_BAD_REQUEST);
         }
         return response()->json([
             'description' => 'succesful operation'

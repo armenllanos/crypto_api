@@ -4,7 +4,9 @@ namespace Tests\app\Infrastructure\Controller;
 
 
 
+use Amp\Process\ProcessOutputStream;
 use App\Application\WalletDataSource\WalletDataSource;
+use App\Application\WalletId\IdGenerator;
 use App\Application\WalletId\WalletIdGenerator;
 use App\Domain\Wallet;
 use Exception;
@@ -36,7 +38,7 @@ class CreateWalletControllerTest extends TestCase
         $this->walletIdGenerator
             ->expects('generateId')
             ->andReturn('1234');
-        $response = $this->post('/api/wallet/open');
+        $response=$this->json('POST','/api/wallet/open');
         $response->assertExactJson(['wallet_id' => '1234']);
     }
     /**
@@ -49,7 +51,7 @@ class CreateWalletControllerTest extends TestCase
         $this->walletIdGenerator
             ->expects('generateId')
             ->andThrow(new Exception('Service unavailable'));
-        $response = $this->post('/api/wallet/open');
+        $response = $this->post('api/wallet/open');
         $response->assertExactJson(['error' => 'Service unavailable']);
     }
 }

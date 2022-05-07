@@ -32,7 +32,6 @@ class SellCryptoService
         }
         $moneyToGet = $amountUsd;
         $coinAmount = $moneyToGet / $coin->getPriceUSD();
-        $wallet->
         $wallet->subCoin($coin, $coinAmount);
         return $wallet->getCoins();
     }

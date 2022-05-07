@@ -11,6 +11,23 @@ class Coin
     private string $nameId;
     private string $priceUSD;
     private int $rank;
+    private float $amount = 0;
+
+    /**
+     * @return float
+     */
+    public function getAmount(): float
+    {
+        return $this->amount;
+    }
+
+    /**
+     * @param float $amount
+     */
+    public function setAmount(float $amount): void
+    {
+        $this->amount=$amount;
+    }
 
     /**
      * @param string $id

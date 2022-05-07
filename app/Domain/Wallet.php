@@ -39,9 +39,10 @@ class Wallet
         $this->coins=$coins;
     }
     public function subCoin(Coin $coin, string $amount){
-        $key = $coin->getSymbol();
+        $key = $coin->getId();
         if (array_key_exists($key, $this->coins)){
-            $this->coins[$key]['amount'] -= $amount;
+            $this->coins[$key]->getAmount();
+            $this->coins[$key]->setAmount($this->coins[$key]->getAmount()-$amount);
         }
     }
 

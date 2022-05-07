@@ -1,4 +1,5 @@
 <?php
+namespace App\Application\SellCrypto;
 
 use App\Application\CoinDataSource\CoinDataSource;
 use App\Application\WalletDataSource\WalletDataSource;
@@ -25,15 +26,14 @@ class SellCryptoService
     public function execute(string $walletId, string $coinId, string $amountUsd)
     {
         $wallet = $this->walletDataSource->getWallet($walletId);
-
         $coin = $this->coinDataSource->getCoin($coinId);
-
+        if($coin ==  null){
+            return null;
+        }
         $moneyToGet = $amountUsd;
-
         $coinAmount = $moneyToGet / $coin->getPriceUSD();
         $wallet->
-        $wallet->addCoin($coin, $coinAmount);
-
+        $wallet->subCoin($coin, $coinAmount);
         return $wallet->getCoins();
     }
 }

@@ -2,7 +2,7 @@ name: Laravel
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, 1-As-Client-I-want-to-sell-crypto-coin ]
   pull_request:
     branches: [ master ]
 

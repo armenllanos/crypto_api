@@ -38,6 +38,4 @@ class Wallet
     {
         $this->coins=$coins;
     }
-
-
 }

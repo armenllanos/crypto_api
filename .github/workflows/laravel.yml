@@ -2,9 +2,13 @@ name: Laravel
 
 on:
   push:
+<<<<<<< HEAD
     branches: [ master, 6-as-client-i-want-total-balance-of-my-crypto]
+=======
+    branches: [ master ,  7-As-Client-I-Want-To-Get-Coins-Status ]
+>>>>>>> fd3b442390a51cc5b5f0f39d7d927d51a40a5848
   pull_request:
-    branches: [ master ]
+    branches: [ master ,  7-As-Client-I-Want-To-Get-Coins-Status ]
 
 jobs:
   laravel-tests:

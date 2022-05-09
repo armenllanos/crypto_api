@@ -2,6 +2,7 @@
 namespace App\Application\WalletCreate;
 
 
+use App\Application\WalletDataSource\WalletDataSource;
 use App\Application\WalletId\WalletIdGenerator;
 use App\Domain\Wallet;
 use Illuminate\Support\Str;
@@ -12,9 +13,11 @@ class WalletCreateService
 {
 
     private WalletIdGenerator $walletIdGenerator;
+    private WalletDataSource $walletDataSource;
     public function __construct(WalletIdGenerator $walletGenerator)
     {
         $this->walletIdGenerator = $walletGenerator;
+        $this->walletDataSource = new WalletDataSource();
     }
     public function execute(): Wallet
     {

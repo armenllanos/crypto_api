@@ -61,7 +61,7 @@ class GetWalletCryptoCurrenciesControllerTest extends TestCase
     /**
      * @test
      */
-    public function SpecificCoinsArrayReceivedCorrectly()
+    public function specificCoinsArrayReceivedCorrectly()
     {
         $wallet = new Wallet();
         $FirstCoin = new Coin("id","BTC","name","nameid","price_usd",1);

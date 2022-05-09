@@ -22,7 +22,6 @@ class GetWalletCryptocurrenciesServiceTest extends TestCase
 
         $this->getWalletCryptocurrenciesService = new GetWalletCryptoCurrenciesService($this->walletDataSource);
     }
-
     /**
      * @test
      */
@@ -39,7 +38,6 @@ class GetWalletCryptocurrenciesServiceTest extends TestCase
 
         $this->assertEquals(null, $response);
     }
-
     /**
      * @test
      */

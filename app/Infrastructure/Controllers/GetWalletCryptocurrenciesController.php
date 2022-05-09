@@ -27,12 +27,11 @@ class GetWalletCryptocurrenciesController extends BaseController
     {
         try {
             $coins = $this->getWalletCryptoCurrenciesService->execute($wallet_id);
-        }catch (Exception $exception) {
+        } catch (Exception $exception) {
             if ($exception->getMessage() === 'Wallet not found')
                 return response()->json([
                     "error" => "a wallet with the specified ID was not found"
                 ], Response::HTTP_NOT_FOUND);
-
             else if ($exception->getMessage() === 'Service Unavailable')
                 return response()->json([
                     "error" => "service is unavailable"
@@ -41,7 +40,5 @@ class GetWalletCryptocurrenciesController extends BaseController
         return response()->json([
             "coins_array" => json_encode($coins)
         ],Response::HTTP_OK);
-
-
     }
 }

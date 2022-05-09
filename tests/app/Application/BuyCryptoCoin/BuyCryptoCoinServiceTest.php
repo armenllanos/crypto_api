@@ -57,4 +57,32 @@ class BuyCryptoCoinServiceTest extends TestCase
 
         $this->assertEquals($expectedResponse, $response);
     }
+    /**
+     * @test
+     */
+    public function buysASpecificCoinWithASpecificAmountOfUSDThatGivesHalfACoin()
+    {
+        $walletId = '999';
+        $wallet = new Wallet($walletId);
+
+        $genericCoin =  new Coin('1', 'BTC', 'Bitcoin', 'bitcoin', '30', '1');
+
+        $requestInformation = ['coin_id' => '1', 'wallet_id' => $walletId, 'amount_usd' => '15'];
+
+        $this->walletDataSource
+            ->expects("getWallet")
+            ->with($walletId)
+            ->once()
+            ->andReturn($wallet);
+
+        $this->coinDataSource
+            ->expects("getCoin")
+            ->once()
+            ->andReturn($genericCoin);
+        $response = $this->buyCryptoCoinService->execute($requestInformation);
+
+        $expectedResponse = ['BTC' => array('coinInformation' => $genericCoin, 'amount' => '0.5')];
+
+        $this->assertEquals($expectedResponse, $response);
+    }
 }

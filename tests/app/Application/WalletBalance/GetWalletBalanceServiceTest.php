@@ -42,7 +42,6 @@ class GetWalletBalanceServiceTest extends TestCase
 
         $this->getWalletBalanceService->execute($walletId);
     }
-
     /**
      * @test
      */
@@ -65,7 +64,6 @@ class GetWalletBalanceServiceTest extends TestCase
 
         $this->assertEquals($expectedWalletBalance, $response);
     }
-
     /**
      * @test
      */

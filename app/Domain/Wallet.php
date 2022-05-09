@@ -5,7 +5,7 @@ namespace App\Domain;
 class Wallet
 {
     private String $wallet_id;
-    private array $coins;
+    private array $coins = array();
 
     /**
      * @return String

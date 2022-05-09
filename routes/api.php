@@ -28,4 +28,4 @@ Route::get(
 
 Route::get('user/{email}', IsEarlyAdopterUserController::class);
 Route::get('user/id/{userId}', GetUserController::class);
-Route::post('coin/buy', SellCryptoController::class);
+Route::post('coin/sell', SellCryptoController::class);

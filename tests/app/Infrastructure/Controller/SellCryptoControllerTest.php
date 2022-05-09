@@ -41,7 +41,7 @@ class SellCryptoControllerTest extends TestCase
             ->with($coinPurchaseData['wallet_id'])
             ->once()
             ->andThrow(new Exception('Service Unavailable'));
-        $response = $this->post('api/coin/buy', $coinPurchaseData);
+        $response = $this->post('api/coin/sell', $coinPurchaseData);
         $response->assertExactJson(['error' => 'service unavailable']);
     }
     /**
@@ -54,7 +54,7 @@ class SellCryptoControllerTest extends TestCase
             "wallet_id" => "999",
         );
 
-        $response = $this->post('api/coin/buy', $coinPurchaseData);
+        $response = $this->post('api/coin/sell', $coinPurchaseData);
 
         $response->assertStatus(Response::HTTP_BAD_REQUEST)
             ->assertExactJson(['error' => 'amount_usd mandatory']);
@@ -80,7 +80,7 @@ class SellCryptoControllerTest extends TestCase
             ->once()
             ->andThrow(new Exception('Coin Not Found'));
 
-        $response = $this->post('api/coin/buy', $coinPurchaseData);
+        $response = $this->post('api/coin/sell', $coinPurchaseData);
 
         $response->assertStatus(Response::HTTP_NOT_FOUND)
             ->assertExactJson(['error' => 'a coin with the specified ID was not found.']);

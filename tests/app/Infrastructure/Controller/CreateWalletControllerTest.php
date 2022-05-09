@@ -50,7 +50,7 @@ class CreateWalletControllerTest extends TestCase
         $this->walletIdGenerator
             ->expects('generateId')
             ->andThrow(new Exception('Service unavailable'));
-        $response = $this->post('api/wallet/open');
+        $response = $this->post('/api/wallet/open');
         $response->assertExactJson(['error' => 'Service unavailable']);
     }
 

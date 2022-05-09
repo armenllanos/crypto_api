@@ -2,7 +2,7 @@ name: Laravel
 
 on:
   push:
-    branches: [ master ,  7-As-Client-I-Want-To-Get-Coins-Status ]
+    branches: [ master,  4-As-Client-I-want-to-open-a-new-wallet,7-As-Client-I-Want-To-Get-Coins-Status]
   pull_request:
     branches: [ master ,  7-As-Client-I-Want-To-Get-Coins-Status ]
 

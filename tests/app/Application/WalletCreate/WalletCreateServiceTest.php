@@ -30,7 +30,6 @@ class WalletCreateServiceTest
      */
     public function walletCreateTest()
     {
-
         $wallet = new Wallet();
         $wallet->setWalletId('1234');
         $this->walletIdGenerator

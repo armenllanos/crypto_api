@@ -41,7 +41,6 @@ class GetWalletBalanceControllerTest extends TestCase
         $response->assertStatus(Response::HTTP_NOT_FOUND)
             ->assertExactJson(['error' => 'a wallet with the specified ID was not found']);
     }
-
     /**
      * @test
      */

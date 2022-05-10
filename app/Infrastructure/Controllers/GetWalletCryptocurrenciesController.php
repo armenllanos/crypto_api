@@ -41,7 +41,5 @@ class GetWalletCryptocurrenciesController extends BaseController
         return response()->json([
             "coins_array" => json_encode($coins)
         ],Response::HTTP_OK);
-
-
     }
 }

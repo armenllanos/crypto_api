@@ -44,7 +44,7 @@ class Wallet
     public function subCoin(Coin $coin, string $amount){
         $key = $coin->getId();
         if (array_key_exists($key, $this->coins)){
-            echo '2';
+
             $this->coins[$key]->getAmount();
             $this->coins[$key]->setAmount($this->coins[$key]->getAmount()-$amount);
 
@@ -52,7 +52,7 @@ class Wallet
 //                insertar error
 //              }
         }else{
-            echo '3';
+
             throw new Exception('a coin with the specified ID was not found.');
         }
     }

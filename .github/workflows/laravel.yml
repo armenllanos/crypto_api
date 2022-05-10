@@ -2,9 +2,9 @@ name: Laravel
 
 on:
   push:
-    branches: [ master, 5-As-Client-I-want-to-get-a-wallets-cryptocurrencies]
+    branches: [ master, 5-As-Client-I-want-to-get-a-wallets-cryptocurrencies ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, 5-As-Client-I-want-to-get-a-wallets-cryptocurrencies ]
 
 jobs:
   laravel-tests:

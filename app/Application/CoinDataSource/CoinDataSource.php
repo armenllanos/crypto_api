@@ -12,7 +12,6 @@ class CoinDataSource
     {
     }
 
-
     public function getCoinStatus(string $idCoin) : ?Coin{
 
         try {

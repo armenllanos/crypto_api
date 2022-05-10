@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master,  4-As-Client-I-want-to-open-a-new-wallet]
   pull_request:
-    branches: [ master ]
+    branches: [ master,  4-As-Client-I-want-to-open-a-new-wallet ]
 
 jobs:
   laravel-tests:

@@ -2,6 +2,9 @@
 
 namespace App\Domain;
 
+use Exception;
+use function PHPUnit\Framework\throwException;
+
 class Wallet
 {
     private String $wallet_id;
@@ -41,12 +44,16 @@ class Wallet
     public function subCoin(Coin $coin, string $amount){
         $key = $coin->getId();
         if (array_key_exists($key, $this->coins)){
+            echo '2';
             $this->coins[$key]->getAmount();
             $this->coins[$key]->setAmount($this->coins[$key]->getAmount()-$amount);
-            /*
-             * if ($this->coins[$key]->getAmount() == 0){
-             *  insertar error
-             * }*/
+
+//            if ($this->coins[$key]->getAmount() == 0) {
+//                insertar error
+//              }
+        }else{
+            echo '3';
+            throw new Exception('a coin with the specified ID was not found.');
         }
     }
 

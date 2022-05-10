@@ -32,15 +32,17 @@ class SellCryptoServiceTest extends \PHPUnit\Framework\TestCase
         $this->coinDataSource
             ->expects('getCoin')
             ->with('1234')
-            ->andReturn(null);
+            ->andReturn( new Coin('random', '0','0', '0', '10', 0));
         $this->walletDataSource
             ->expects('getWallet')
             ->with('1234')
             ->andReturns(new \App\Domain\Wallet());
 
-
+        $this->expectException(Exception::class);
         $response = $this->sellCryptoService->execute('1234','1234',0);
-        $this->assertNull($response);
+
+
+
 
     }
     /**

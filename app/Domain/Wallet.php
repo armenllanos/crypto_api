@@ -49,13 +49,9 @@ class Wallet
             $this->coins[$key]->getAmount();
             $this->coins[$key]->setAmount($this->coins[$key]->getAmount()-$amount);
 
-//            if ($this->coins[$key]->getAmount() == 0) {
-//                insertar error
-//              }
         }else{
 
             throw new Exception('a coin with the specified ID was not found.');
         }
     }
-
 }

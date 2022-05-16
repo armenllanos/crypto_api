@@ -2,7 +2,10 @@
 
 namespace App\Infrastructure\Controllers;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 use App\Application\WalletBalance\GetWalletBalanceService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Response;
@@ -18,16 +21,28 @@ class GetWalletBalanceController
     public function __invoke(string $walletId): JsonResponse
     {
         try {
+<<<<<<< HEAD
             $walletBalance=$this->getWalletBalanceService->execute($walletId);
         } catch (Exception $exception) {
             if ($exception->getMessage() === 'Wallet not found')
                 return response()->json([
                     "error"=>"a wallet with the specified ID was not found"
+=======
+            $walletBalance = $this->getWalletBalanceService->execute($walletId);
+        }catch (Exception $exception) {
+            if ($exception->getMessage() === 'Wallet not found')
+                return response()->json([
+                    "error" => "a wallet with the specified ID was not found"
+>>>>>>> master
                 ], Response::HTTP_NOT_FOUND);
 
             else if ($exception->getMessage() === 'Service unavailable')
                 return response()->json([
+<<<<<<< HEAD
                     "error"=>"service is unavailable"
+=======
+                    "error" => "service is unavailable"
+>>>>>>> master
                 ], Response::HTTP_SERVICE_UNAVAILABLE);
         }
         return response()->json([

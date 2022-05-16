@@ -2,7 +2,10 @@
 
 namespace App\Application\WalletId;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 class WalletIdGenerator implements IdGenerator
 {
 

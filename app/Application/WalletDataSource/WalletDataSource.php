@@ -9,7 +9,7 @@ use Illuminate\Contracts\Cache\Repository;
 
 class WalletDataSource
 {
-  public function getWallet(string $walletId): ?Wallet
+    public function getWallet(string $walletId): ?Wallet
     {
         if (!Cache::has($walletId)) {
             return Exception("Wallet not found");

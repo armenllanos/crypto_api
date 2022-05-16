@@ -12,7 +12,7 @@ class CoinDataSource
     {
     }
 
-    public function getCoin(string $idCoin) : ?Coin
+    public function getCoin(string $idCoin) : Coin
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(

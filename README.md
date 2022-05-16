@@ -25,3 +25,6 @@ Una vez teníamos todo funcionando correctamente hicimos un merge de cada rama a
 
 ## Pasos completados
 Hemos completado todos los objetivos que se planteaban para el trabajo final.
+
+## Problemas encrontrados
+A la hora de hacer los merge de las ramasa master nos hemos encontrado con multiples errores. Al ejecturar los test en local todos funcionaban pero al hacer el ejecutarse los test en github obtenemos errores donde dice lo siguiente "ReflectionException: Class "cache" does not exists"

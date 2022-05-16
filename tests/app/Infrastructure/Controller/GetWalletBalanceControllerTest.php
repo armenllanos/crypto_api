@@ -11,10 +11,6 @@ use Tests\TestCase;
 
 class GetWalletBalanceControllerTest extends TestCase
 {
-<<<<<<< HEAD
-
-=======
->>>>>>> master
     private WalletDataSource $walletDataSource;
 
     /**

@@ -65,7 +65,7 @@ class CoinDataSourceTest extends TestCase
             ->once()
             ->andReturn(null);
 
-        $response = $this->coinStatusService->execute($coinId);
+        $response = $this->getCoinStatusService->execute($coinId);
         $this->assertEquals(null,$response);
     }
 }

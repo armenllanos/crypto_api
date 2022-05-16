@@ -28,16 +28,6 @@ class CoinStatusControllerTest extends TestCase
     /**
      * @test
      */
-    public function getBitcoinStatusFromApiTest()
-    {
-
-        $response = $this->get('/api/coin/status/90');
-        $this->assertEquals("BTC",$response['symbol']);
-    }
-
-    /**
-     * @test
-     */
     public function getStatusOfNotExistingCoinId()
     {
 

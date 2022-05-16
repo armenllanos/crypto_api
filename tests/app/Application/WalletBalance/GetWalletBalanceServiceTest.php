@@ -29,22 +29,6 @@ class GetWalletBalanceServiceTest extends TestCase
     /**
      * @test
      */
-    public function walletWithSpecificIdNotFound()
-    {
-        $walletId = '999';
-        $this->walletDataSource
-            ->expects("getWallet")
-            ->with($walletId)
-            ->once()
-            ->andThrow(new Exception('Wallet not found'));
-
-        $this->expectException(Exception::class);
-
-        $this->getWalletBalanceService->execute($walletId);
-    }
-    /**
-     * @test
-     */
     public function balanceOfSpecificWalletIsZero()
     {
         $walletId = '0';

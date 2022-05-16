@@ -4,7 +4,7 @@ namespace App\Application\CoinStatus;
 use App\Domain\Coin;
 use App\Application\CoinDataSource\CoinDataSource;
 
-class CoinStatusService implements CoinDataSource
+class CoinStatusService
 {
     /**
      * @var CoinDataSource

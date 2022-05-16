@@ -2,11 +2,7 @@
 
 namespace Tests\app\Infrastructure\Controller;
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> master
 use Amp\Process\ProcessOutputStream;
 use App\Application\WalletDataSource\WalletDataSource;
 use App\Application\WalletId\IdGenerator;
@@ -57,10 +53,6 @@ class CreateWalletControllerTest extends TestCase
         $response = $this->post('api/wallet/open');
         $response->assertExactJson(['error' => 'Service unavailable']);
     }
-<<<<<<< HEAD
 
 }
 
-=======
-}
->>>>>>> master

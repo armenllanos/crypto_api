@@ -4,6 +4,7 @@ use App\Infrastructure\Controllers\CreateWalletController;
 use App\Infrastructure\Controllers\GetUserController;
 use App\Infrastructure\Controllers\GetWalletController;
 use App\Infrastructure\Controllers\CoinStatusController;
+use App\Infrastructure\Controllers\GetWalletCryptocurrenciesController;
 use App\Infrastructure\Controllers\IsEarlyAdopterUserController;
 use App\Infrastructure\Controllers\SellCryptoController;
 use App\Infrastructure\Controllers\StatusController;

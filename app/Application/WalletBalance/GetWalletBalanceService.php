@@ -2,10 +2,9 @@
 
 namespace App\Application\WalletBalance;
 
-use App\Domain\Wallet;
+
 use App\Application\WalletDataSource\WalletDataSource;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
+
 
 class GetWalletBalanceService
 {

@@ -3,8 +3,6 @@
 namespace App\Application\WalletDataSource;
 use App\Domain\Wallet;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Contracts\Cache\Factory;
-use Illuminate\Contracts\Cache\Repository;
 
 
 class WalletDataSource
@@ -20,11 +18,7 @@ class WalletDataSource
 
     public function saveWallet(Wallet $wallet)
     {
-
-
         Cache::put($wallet->getWalletId(), $wallet);
-
-
     }
 
     public function deleteWallet(string $walletId)

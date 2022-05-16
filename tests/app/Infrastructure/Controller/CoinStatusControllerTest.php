@@ -3,7 +3,6 @@
 namespace Tests\app\Infrastructure\Controller;
 
 use App\Application\CoinDataSource\CoinDataSource;
-use App\Infrastructure\Controllers\GetCoinController;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 use Mockery;
@@ -31,6 +30,7 @@ class CoinStatusControllerTest extends TestCase
     public function getBitcoinStatusFromApiTest()
     {
         $response = $this->get('/api/coin/status/90');
+        print_r($response);
         $this->assertEquals("BTC",$response['symbol']);
     }
 

@@ -25,7 +25,6 @@ class BuyCryptoCoinServiceTest extends TestCase
 
         $this->walletDataSource = Mockery::mock(WalletDataSource::class);
         $this->coinDataSource = Mockery::mock(CoinDataSource::class);
-
         $this->buyCryptoCoinService = new BuyCryptoCoinService($this->coinDataSource, $this->walletDataSource);
     }
 

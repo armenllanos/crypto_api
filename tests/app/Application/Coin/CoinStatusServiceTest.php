@@ -6,7 +6,6 @@ use App\Application\CoinDataSource\CoinDataSource;
 use App\Application\CoinStatus\CoinStatusService;
 use App\Domain\Coin;
 use PHPUnit\Framework\TestCase;
-use Exception;
 use Mockery;
 
 class CoinStatusServiceTest extends TestCase

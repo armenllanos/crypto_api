@@ -4,15 +4,18 @@ namespace Tests\app\Application\SellCrypto;
 
 use App\Application\CoinDataSource\CoinDataSource;
 use App\Application\SellCrypto\SellCryptoService;
+use App\Application\WalletDataSource\WalletDataSource;
 use App\Domain\Coin;
+use App\Domain\Wallet;
 use Exception;
 use Mockery;
+use Tests\TestCase;
 
-class SellCryptoServiceTest extends \PHPUnit\Framework\TestCase
+class SellCryptoServiceTest extends TestCase
 {
     private SellCryptoService $sellCryptoService;
     private CoinDataSource $coinDataSource;
-    private \App\Application\WalletDataSource\WalletDataSource $walletDataSource;
+    private WalletDataSource $walletDataSource;
 
     /**
      * @setUp
@@ -22,7 +25,7 @@ class SellCryptoServiceTest extends \PHPUnit\Framework\TestCase
         parent::setUp();
 
         $this->coinDataSource = Mockery::mock(CoinDataSource::class);
-        $this->walletDataSource = Mockery::mock(\App\Application\WalletDataSource\WalletDataSource::class);
+        $this->walletDataSource = Mockery::mock(WalletDataSource::class);
         $this->sellCryptoService = new SellCryptoService($this->coinDataSource, $this->walletDataSource);
     }
 
@@ -39,7 +42,7 @@ class SellCryptoServiceTest extends \PHPUnit\Framework\TestCase
         $this->walletDataSource
             ->expects('getWallet')
             ->with('1234')
-            ->andReturns(new \App\Domain\Wallet());
+            ->andReturns(new Wallet());
 
         $this->expectException(Exception::class);
         $response = $this->sellCryptoService->execute('1234','1234',0);
@@ -50,7 +53,7 @@ class SellCryptoServiceTest extends \PHPUnit\Framework\TestCase
      */
     public function walletSubTest()
     {
-        $wallet = new \App\Domain\Wallet();
+        $wallet = new Wallet();
         $coin = new Coin('0', '0','0', '0', '10', 1);
         $coin->setId('0');
         $coin->setPriceUSD('20');
@@ -66,7 +69,6 @@ class SellCryptoServiceTest extends \PHPUnit\Framework\TestCase
             ->andReturns($wallet);
         $response = $this->sellCryptoService->execute('1234','0','10');
         $this->assertEquals($response[$coin->getId()]->getAmount(),0.5);
-
     }
 }
 

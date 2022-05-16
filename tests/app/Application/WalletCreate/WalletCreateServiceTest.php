@@ -2,16 +2,14 @@
 namespace Tests\app\Application\WalletCreate;
 
 use App\Application\WalletCreate\WalletCreateService;
-use App\Application\WalletId\IdGenerator;
 use App\Application\WalletId\WalletIdGenerator;
 use App\Domain\Wallet;
 use Illuminate\Support\Facades\Cache;
 use Mockery;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 
-class WalletCreateServiceTest
-    extends TestCase
+class WalletCreateServiceTest extends TestCase
 {
     private WalletCreateService $walletCreateService;
     private WalletIdGenerator $walletIdGenerator;

@@ -1,9 +1,7 @@
 <?php
 
 use App\Infrastructure\Controllers\CreateWalletController;
-use App\Infrastructure\Controllers\GetUserController;
 use App\Infrastructure\Controllers\CoinStatusController;
-use App\Infrastructure\Controllers\IsEarlyAdopterUserController;
 use App\Infrastructure\Controllers\SellCryptoController;
 use App\Infrastructure\Controllers\StatusController;
 use App\Infrastructure\Controllers\GetWalletCryptocurrenciesController;
@@ -31,8 +29,6 @@ Route::get(
     StatusController::class
 );
 
-Route::get('user/{email}', IsEarlyAdopterUserController::class);
-Route::get('user/id/{userId}', GetUserController::class);
 Route::get('wallet/{idWallet}', GetWalletCryptocurrenciesController::class);
 Route::get('coin/status/{coinId}', CoinStatusController::class);
 Route::post('wallet/open', CreateWalletController::class);

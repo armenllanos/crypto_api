@@ -8,9 +8,7 @@ class Wallet
 {
     private String $wallet_id;
     private array $coins = array();
-    public function __construct(string $wallet_id){
-        $this->wallet_id = $wallet_id;
-    }
+
     /**
      * @return String
      */

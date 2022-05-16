@@ -72,7 +72,8 @@ class BuyCryptoCoinControllerTest extends TestCase
      */
     public function introducedCoinCantBeBoughtBecauseItDoesNotExist()
     {
-        $wallet = new Wallet(999);
+        $wallet = new Wallet();
+        $wallet->setWalletId(999);
         $coinPurchaseData = array(
             "coin_id" => "999",
             "wallet_id" => "999",

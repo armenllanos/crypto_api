@@ -8,7 +8,9 @@ class Wallet
 {
     private String $wallet_id;
     private array $coins = array();
-
+    public function __construct(string $wallet_id){
+        $this->wallet_id = $wallet_id;
+    }
     /**
      * @return String
      */
@@ -47,6 +49,15 @@ class Wallet
             $this->coins[$key]->setAmount($this->coins[$key]->getAmount()-$amount);
         }else{
             throw new Exception('a coin with the specified ID was not found.');
+        }
+    }
+    public function addCoin(Coin $coin, string $amount){
+        $key = $coin->getSymbol();
+        if (array_key_exists($key, $this->coins)){
+            $this->coins[$key]['amount'] += $amount;
+        }
+        else {
+            $this->coins[$key] = array('coinInformation' => $coin, 'amount' => $amount);
         }
     }
 }

@@ -8,6 +8,7 @@ use App\Infrastructure\Controllers\SellCryptoController;
 use App\Infrastructure\Controllers\StatusController;
 use App\Infrastructure\Controllers\GetWalletCryptocurrenciesController;
 use App\Infrastructure\Controllers\GetWalletBalanceController;
+use App\Infrastructure\Controllers\BuyCryptoCoinController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +38,4 @@ Route::get('coin/status/{coinId}', CoinStatusController::class);
 Route::post('wallet/open', CreateWalletController::class);
 Route::post('coin/sell', SellCryptoController::class);
 Route::get('wallet/{wallet_id}/balance', GetWalletBalanceController::class);
+Route::post('coin/buy', BuyCryptoCoinController::class);

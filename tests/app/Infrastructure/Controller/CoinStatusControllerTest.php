@@ -30,7 +30,6 @@ class CoinStatusControllerTest extends TestCase
      */
     public function getBitcoinStatusFromApiTest()
     {
-
         $response = $this->get('/api/coin/status/90');
         $this->assertEquals("BTC",$response['symbol']);
     }
@@ -40,7 +39,6 @@ class CoinStatusControllerTest extends TestCase
      */
     public function getStatusOfNotExistingCoinId()
     {
-
         $response = $this->get('/api/coin/status/654654');
         $response->assertStatus(Response::HTTP_BAD_REQUEST)->assertExactJson(["error"=>"A coin with the specified ID was not found"]);
     }

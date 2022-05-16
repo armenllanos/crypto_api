@@ -1,10 +1,7 @@
 <?php
 namespace App\Application\WalletCreate;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 use App\Application\WalletDataSource\WalletDataSource;
 use App\Application\WalletId\IdGenerator;
 use App\Application\WalletId\WalletIdGenerator;
@@ -15,12 +12,9 @@ use mysql_xdevapi\Warning;
 
 class WalletCreateService
 {
-<<<<<<< HEAD
+
 
     private WalletIdGenerator $walletIdGenerator;
-=======
-    private IdGenerator $walletIdGenerator;
->>>>>>> master
     private WalletDataSource $walletDataSource;
     public function __construct(WalletIdGenerator $walletGenerator)
     {

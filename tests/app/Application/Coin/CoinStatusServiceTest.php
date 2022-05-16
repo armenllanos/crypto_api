@@ -9,19 +9,14 @@ use PHPUnit\Framework\TestCase;
 use Exception;
 use Mockery;
 
-<<<<<<< HEAD
+
 
 class CoinDataSourceTest extends TestCase
 
 {
     private CoinDataSource $coinDataSource;
     private CoinStatusService $getCoinStatusService;
-=======
-class CoinStatusServiceTest extends TestCase
-{
-    private CoinDataSource $coinDataSource;
-    private CoinStatusService $coinStatusService;
->>>>>>> master
+
 
     /**
      * @setUp
@@ -32,12 +27,8 @@ class CoinStatusServiceTest extends TestCase
 
         $this->coinDataSource = Mockery::mock(CoinDataSource::class);
 
-<<<<<<< HEAD
         $this->getCoinStatusService = new CoinStatusService($this->coinDataSource);
-=======
-        $this->coinStatusService = new CoinStatusService($this->coinDataSource);
 
->>>>>>> master
     }
 
 
@@ -56,11 +47,7 @@ class CoinStatusServiceTest extends TestCase
             ->once()
             ->andReturn($coin);
 
-<<<<<<< HEAD
         $response = $this->getCoinStatusService->getCoinStatus($coinId);
-=======
-        $response = $this->coinStatusService->execute($coinId);
->>>>>>> master
 
         $this->assertEquals("BTC",$response->getSymbol());
 

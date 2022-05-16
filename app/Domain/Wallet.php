@@ -2,10 +2,12 @@
 
 namespace App\Domain;
 
+use Exception;
+
 class Wallet
 {
     private String $wallet_id;
-    private array $coins;
+    private array $coins = array();
 
     /**
      * @return String
@@ -37,6 +39,18 @@ class Wallet
     public function setCoins(array $coins): void
     {
         $this->coins=$coins;
+    }
+    public function subCoin(Coin $coin, float $amount){
+        $key = $coin->getId();
+        if (array_key_exists($key, $this->coins)){
+
+            $this->coins[$key]->getAmount();
+            $this->coins[$key]->setAmount($this->coins[$key]->getAmount()-$amount);
+
+        }else{
+
+            throw new Exception('a coin with the specified ID was not found.');
+        }
     }
 
 

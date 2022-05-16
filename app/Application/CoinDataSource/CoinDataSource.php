@@ -12,7 +12,8 @@ class CoinDataSource
     {
     }
 
-    public function getCoin(string $idCoin) : Coin
+
+    public function getCoin(string $idCoin) : ?Coin
     {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -25,13 +26,12 @@ class CoinDataSource
             CURLOPT_CUSTOMREQUEST => "GET"));
         $response = curl_exec($curl);
         $currency_data = json_decode($response, true);
+
         if(!isset($currency_data[0]['id'])){
             return null;
         }
         return new Coin($currency_data[0]['id'], $currency_data[0]['symbol'], $currency_data[0]['name'], $currency_data[0]['nameid'],
             $currency_data[0]['price_usd'], $currency_data[0]['rank']);
-
-
     }
 
 }
